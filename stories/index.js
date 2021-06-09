@@ -1,4 +1,5 @@
 import React from "react";
+import { Fragment } from "react";
 
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
@@ -166,14 +167,37 @@ storiesOf("Appointment", module)
   .addParameters({
     backgrounds: [{ name: "white", value: "#fff", default: true }]
   })
-  .add("Appointment", () => <Appointment />)
-  .add("Appointment with Time", () => <Appointment time="12pm" />)
   .add("Header", () => <Header time="12pm" />)
+
+  .add("Appointment", () => <Appointment />)
+
+  .add("Appointment with Time", () => <Appointment time="12pm" />)
+
+  // Appointments/index.js
+  .add("Appointment Empty", () => (
+    <Fragment>
+      <Appointment id={1} time="12pm" />
+      <Appointment className=":last-of-type" id="last" time="1pm" />
+    </Fragment>
+  ))
+
+  // Appointments/index.js
+  // :last-of-type CSS selector in the last appointment
+  // not sure if this is "style" or "className"
+  .add("Appointment Booked", () => (
+    <Fragment>
+      <Appointment
+        id={1}
+        time="12pm"
+        interview={{ student: "Lydia Miller-Jones", interviewer }}
+      />
+      <Appointment className=":last-of-type" id="last" time="1pm" />
+    </Fragment>
+  ))
 
 
 
 // components/Appointments/Empty
-storiesOf("Empty", module)
   .add("Add an appointment", () => (
     <Empty onAdd={action("onAdd")} />
   ))
@@ -181,7 +205,6 @@ storiesOf("Empty", module)
 
 
 // components/Appointments/Show
-storiesOf("Show", module)
   .add("Student", () => (
     <Show student={"Lydia Miller-Jones"}
     interviewer={interviewers}
@@ -193,7 +216,6 @@ storiesOf("Show", module)
 
 
 // components/Appointments/Confirm
-storiesOf("Confirm", module)
   .add("Confirm an appointment", () => (
     <Confirm
       message="Delete the appointment?"
@@ -205,13 +227,11 @@ storiesOf("Confirm", module)
 
 
 // components/Appointments/Status
-storiesOf("Status", module)
   .add("Show status", () => (<Status message="Deleting" /> ))
 
 
 
 // components/Appointments/Error.js
-storiesOf("Error", module)
   .add("Error message", () => (
     <Error
       message="Could not delete appointment"
@@ -222,7 +242,6 @@ storiesOf("Error", module)
 
 
 //components/Appointments/Form
-storiesOf("Forms", module)
   .add("Edit", () => (
     <Form
     name=""
