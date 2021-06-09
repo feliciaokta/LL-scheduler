@@ -226,16 +226,18 @@ storiesOf("Forms", module)
   .add("Edit", () => (
     <Form
     name=""
-    interviewers={[]}
-    interviewer={interviewers.id}
+    interviewers={interviewers}
+    interviewer={3}
     onSave={action("onSave")}
     onCancel={action("onCancel")}
+    setInterviewer={event => action("setInterviewer")(interviewer.id)}
     />
   ))
   .add("Create", () => (
     <Form
-    interviewers={[]}
+    interviewers={interviewers}
     onSave={action("onSave")}
     onCancel={action("onCancel")}
+    setInterviewer={event => action("setInterviewer")(interviewer.id)}
     />
   ))

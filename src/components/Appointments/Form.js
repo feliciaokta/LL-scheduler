@@ -1,17 +1,19 @@
 import React from "react";
-import InterviewerListItem from "components/InterviewerListItem";
+import InterviewerList from "components/InterviewerList";
+// import InterviewerListItem from "components/InterviewerListItem";
+import Button from "components/Button";
 
 export default function Form(props) {
 
-  const data = props.interviewers.map((interviewer) => {
-    return (<InterviewerListItem
-      key={interviewer.id}
-      name={interviewer.name}
-      avatar={interviewer.avatar}
-      selected={interviewer.id === props.interviewer}
-      setInterviewer={(event) => props.setInterviewer(interviewer.id)}
-    />)
-  })
+  // const data = props.interviewers.map((interviewer) => {
+  //   return (<InterviewerList
+  //     key={interviewer.id}
+  //     name={interviewer.name}
+  //     avatar={interviewer.avatar}
+  //     selected={interviewer.id === props.interviewer}
+  //     setInterviewer={(event) => props.setInterviewer(interviewer.id)}
+  //   />)
+  // })
 
   return(
   <main className="appointment__card appointment__card--create">
@@ -27,7 +29,7 @@ export default function Form(props) {
           */
         />
       </form>
-      <InterviewerList interviewers={props.interviewers} value={interviewer} onChange={setInterviewer} />
+      <InterviewerList interviewers={props.interviewers} value={props.interviewer} onChange={props.setInterviewer} />
     </section>
     <section className="appointment__card-right">
       <section className="appointment__actions">
