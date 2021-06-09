@@ -11,6 +11,9 @@ import DayList from "components/DayList";
 import InterviewerListItem from "components/InterviewerListItem";
 import InterviewerList from "components/InterviewerList";
 import Appointment from "components/Appointments/index";
+import Header from "components/Appointments/Header";
+import Empty from "components/Appointments/Empty";
+import Show from "components/Appointments/Show";
 
 
 
@@ -149,7 +152,7 @@ storiesOf("InterviewerList", module)
   ));
 
 
-
+// from index.js in Appointments folder
 storiesOf("Appointment", module)
   .addParameters({
     backgrounds: [{ name: "white", value: "#fff", default: true }]
@@ -157,4 +160,24 @@ storiesOf("Appointment", module)
   .add("Appointment", () => <Appointment />)
   .add("Appointment with Time", () => (
     <Appointment time="12pm" />
+  )
+  .add("Header", () => <Header time="12pm" />)
+  )
+
+
+
+storiesOf("Empty", module)
+  .add("Add an appointment", () => (
+    <Empty onAdd={action("onAdd")} />
+  ))
+
+
+
+storiesOf("Show", module)
+  .add("Student", () => (
+    <Show student={"Lydia Miller-Jones"}
+    interviewer={interviewers}
+    onEdit={action("onEdit")}
+    onDelete={action("onDelete")}
+    />
   ))
