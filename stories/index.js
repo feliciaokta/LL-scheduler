@@ -14,9 +14,13 @@ import Appointment from "components/Appointments/index";
 import Header from "components/Appointments/Header";
 import Empty from "components/Appointments/Empty";
 import Show from "components/Appointments/Show";
+import Confirm from "components/Appointments/Confirm";
+import Status from "components/Appointments/Status";
+import Error from "components/Appointments/Error";
 
 
 
+// components/Button
 storiesOf("Button", module)
   .addParameters({
     backgrounds: [{ name: "dark", value: "#222f3e", default: true }]
@@ -35,6 +39,7 @@ storiesOf("Button", module)
 
 
 
+// components/DayListItem
 storiesOf("DayListItem", module) //Initiates Storybook and registers our DayListItem component
   .addParameters({
     backgrounds: [{ name: "dark", value: "#222f3e", default: true }]
@@ -69,6 +74,7 @@ const days = [
 
 
 
+// components/DayList
 storiesOf("DayList", module)
   .addParameters({
     backgrounds: [{ name: "dark", value: "#222f3e", default: true }],
@@ -91,7 +97,7 @@ const interviewer = {
 
 
 
-
+// components/InterviewerListItem
 storiesOf("InterviewerListItem", module)
   .addParameters({
     backgrounds: [{ name: "dark", value: "#222f3e", default: true }]
@@ -133,6 +139,7 @@ const interviewers = [
 
 
 
+// components/InterviewerList
 storiesOf("InterviewerList", module)
   .addParameters({
     backgrounds: [{ name: "dark", value: "#222f3e", default: true }]
@@ -152,20 +159,19 @@ storiesOf("InterviewerList", module)
   ));
 
 
+
 // from index.js in Appointments folder
 storiesOf("Appointment", module)
   .addParameters({
     backgrounds: [{ name: "white", value: "#fff", default: true }]
   })
   .add("Appointment", () => <Appointment />)
-  .add("Appointment with Time", () => (
-    <Appointment time="12pm" />
-  )
+  .add("Appointment with Time", () => <Appointment time="12pm" />)
   .add("Header", () => <Header time="12pm" />)
-  )
 
 
 
+// components/Appointments/Empty
 storiesOf("Empty", module)
   .add("Add an appointment", () => (
     <Empty onAdd={action("onAdd")} />
@@ -173,11 +179,41 @@ storiesOf("Empty", module)
 
 
 
+// components/Appointments/Show
 storiesOf("Show", module)
   .add("Student", () => (
     <Show student={"Lydia Miller-Jones"}
     interviewer={interviewers}
     onEdit={action("onEdit")}
     onDelete={action("onDelete")}
+    />
+  ))
+
+  
+
+// components/Appointments/Confirm
+storiesOf("Confirm", module)
+  .add("Confirm an appointment", () => (
+    <Confirm
+      message="Delete the appointment?"
+      onConfirm={action("onConfirm")}
+      onCancel={action("onCancel")}
+    />
+  ))
+
+
+
+// components/Appointments/Status
+storiesOf("Status", module)
+  .add("Show status", () => (<Status message="Deleting" /> ))
+
+
+
+// components/Appointments/Error.js
+storiesOf("Error", module)
+  .add("Error message", () => (
+    <Error
+      message="Could not delete appointment"
+      onClose={action("onClose")}
     />
   ))
