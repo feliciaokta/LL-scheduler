@@ -56,24 +56,25 @@ storiesOf("DayListItem", module) //Initiates Storybook and registers our DayList
 
 
 // global const to populate DayList
-const days = [
-  {
-    id: 1,
-    name: "Monday",
-    spots: 2,
-  },
-  {
-    id: 2,
-    name: "Tuesday",
-    spots: 5,
-  },
-  {
-    id: 3,
-    name: "Wednesday",
-    spots: 0,
-  },
-];
+// const days = [
+//   {
+//     id: 1,
+//     name: "Monday",
+//     spots: 2,
+//   },
+//   {
+//     id: 2,
+//     name: "Tuesday",
+//     spots: 5,
+//   },
+//   {
+//     id: 3,
+//     name: "Wednesday",
+//     spots: 0,
+//   },
+// ];
 
+// const days = 'http://localhost:8001/api/days'
 
 
 // components/DayList
@@ -195,14 +196,10 @@ storiesOf("Appointment", module)
     </Fragment>
   ))
 
-
-
 // components/Appointments/Empty
   .add("Add an appointment", () => (
     <Empty onAdd={action("onAdd")} />
   ))
-
-
 
 // components/Appointments/Show
   .add("Student", () => (
@@ -213,8 +210,6 @@ storiesOf("Appointment", module)
     />
   ))
 
-
-
 // components/Appointments/Confirm
   .add("Confirm an appointment", () => (
     <Confirm
@@ -224,12 +219,8 @@ storiesOf("Appointment", module)
     />
   ))
 
-
-
 // components/Appointments/Status
   .add("Show status", () => (<Status message="Deleting" /> ))
-
-
 
 // components/Appointments/Error.js
   .add("Error message", () => (
@@ -238,8 +229,6 @@ storiesOf("Appointment", module)
       onClose={action("onClose")}
     />
   ))
-
-
 
 //components/Appointments/Form
   .add("Edit", () => (
