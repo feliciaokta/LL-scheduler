@@ -28,12 +28,15 @@ function selectUserByName(state, name) {
 // }
 
 
-export const getAppointmentsForDay = (state, day) => {
+export default function getAppointmentsForDay (state, day) {
+
+  console.log("state", state);
+  
+  if (!state.days) {
+    return [];
+  }
 
   let filteredAppointments = state.days.filter(time => time.name === day)
 
-  if (filteredAppointments.length === 0 || state.days.length === 0) {
-    return [];
-  }
   return filteredAppointments[0].appointments.map(id => state.appointments[id]);
 };
