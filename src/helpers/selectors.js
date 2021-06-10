@@ -28,15 +28,17 @@ function selectUserByName(state, name) {
 // }
 
 
-export default function getAppointmentsForDay (state, day) {
-
-  console.log("state", state);
-  
-  if (!state.days) {
-    return [];
+export default function getAppointmentsForDay(state, day) {
+  // Find the current day -- elm is the object from the api
+  const currentDay = state.days.find(elm => state.day === elm.name)
+  // Get appointments.id array from the day
+  const currentAppointments = currentDay ? currentDay.appointments : [];
+  // Create an empty array of full appointments
+  const parsedAppointments = [];
+  // Push each appointment object
+  for (let id of currentAppointments) {
+    parsedAppointments.push(state.appointments[id])
   }
 
-  let filteredAppointments = state.days.filter(time => time.name === day)
-
-  return filteredAppointments[0].appointments.map(id => state.appointments[id]);
+  return parsedAppointments;
 };

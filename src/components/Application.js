@@ -80,7 +80,8 @@ export default function Application(props) {
 
   const setDays = days => setState(prev => ({ ...prev, days}));
 
-  const dailyAppointments = getAppointmentsForDay(state.appointments, state.day);
+  console.log("state:", state);
+  const dailyAppointments = getAppointmentsForDay(state, state.day);
 
   const data = dailyAppointments.map(appointment => {
     return (
@@ -111,7 +112,7 @@ export default function Application(props) {
           appointments: all[1].data,
           interviewers: all[2].data}));
     })
-  });
+  }, []);
 
 
 
