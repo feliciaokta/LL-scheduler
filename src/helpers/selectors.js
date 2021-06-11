@@ -1,44 +1,29 @@
-function selectUserByName(state, name) {
-  const filteredNames = state.users.filter(user => user.name === name);
-  return filteredNames;
-}
 
-
-// export function getAppointmentsForDay(state, day) {
-//   //... returns an array of appointments for that day
-//   console.log("state: ", state); 
-//   let answer = [];
-  
-//   for (let i = 0 ; i < state.days.length; i++) {
-//     if(state.days[i].name === day) {
-//       answer = state.days[i].appointments;
-//     }
-//   }
-
-//   for (let j = 0; j < state.days.length; j++) {
-//     let keys = Object.keys(state.appointments);
-//     if(state.days[j].appointments === keys[j]) {
-//       answer.push(state.appointments[j]);
-//     }
-//   }
-
-
-//   return(answer);
-
-// }
-
-
-export default function getAppointmentsForDay(state, day) {
+export const getAppointmentsForDay = (state, day) => {
   // Find the current day -- elm is the object from the api
   const currentDay = state.days.find(elm => state.day === elm.name)
+
   // Get appointments.id array from the day
   const currentAppointments = currentDay ? currentDay.appointments : [];
+
   // Create an empty array of full appointments
   const parsedAppointments = [];
+
   // Push each appointment object
   for (let id of currentAppointments) {
     parsedAppointments.push(state.appointments[id])
   }
 
   return parsedAppointments;
+};
+
+
+export const getInterview = (state, interview) => {
+  if (interview === null) {
+    return null;
+  }
+  const interviewerID = interview.interviewer;
+  const interviewer = state.interviewers[interviewerID]
+  
+  return {...interview, interviewer}
 };
