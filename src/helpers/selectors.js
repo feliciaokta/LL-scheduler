@@ -1,7 +1,7 @@
 
 export const getAppointmentsForDay = (state, day) => {
   // Find the current day -- elm is the object from the api
-  const currentDay = state.days.find(elm => state.day === elm.name)
+  const currentDay = state.days.find(elm => day === elm.name)
 
   // Get appointments.id array from the day
   const currentAppointments = currentDay ? currentDay.appointments : [];
@@ -25,5 +25,8 @@ export const getInterview = (state, interview) => {
   const interviewerID = interview.interviewer;
   const interviewer = state.interviewers[interviewerID]
   
-  return {...interview, interviewer}
+  return {...interview, interviewer};
 };
+
+
+

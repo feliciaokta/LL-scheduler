@@ -6,6 +6,8 @@ import "components/InterviewerList.scss";
 
 export default function Form(props) {
 
+  console.log("props from Form.js : ");
+
   const [name, setName] = useState(props.name || "");
   const [interviewer, setInterviewer] = useState(props.interviewer || null);
 
@@ -29,12 +31,13 @@ export default function Form(props) {
           type="text"
           placeholder="Enter Student Name"
           onChange={(event) => setName(event.target.value)}
-          /*
-            This must be a controlled component
-          */
+          /* This must be a controlled component */
         />
       </form>
-      <InterviewerList interviewers={props.interviewers} value={interviewer} onChange={(value) => setInterviewer(value)} />
+      <InterviewerList
+        interviewers={props.interviewers}
+        value={interviewer}
+        onChange={(value) => setInterviewer(value)} />
     </section>
     <section className="appointment__card-right">
       <section className="appointment__actions">
