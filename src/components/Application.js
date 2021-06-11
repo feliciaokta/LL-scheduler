@@ -45,7 +45,7 @@ export default function Application(props) {
   // const setDays = days => setState(prev => ({ ...prev, days}));
 
   
-  // Appointment component, lots of functions here
+  // Appointment component, bound into {schedule}, lots of functions here
   // helpers/selectors.js
   const appointments = getAppointmentsForDay(state, state.day);
 
@@ -53,13 +53,6 @@ export default function Application(props) {
 
   function bookInterview(id, interview) {
     console.log(id, interview);
-  }
-
-  function save(name, interviewer) {
-    const interview = {
-      student: name,
-      interviewer
-    };
   }
 
   
@@ -74,7 +67,7 @@ export default function Application(props) {
       time={appointment.time}
       interview={interview}
       interviewers={interviewers}
-      bookInterview={bookInterview()}
+      bookInterview={bookInterview}
       />
     )
   });
