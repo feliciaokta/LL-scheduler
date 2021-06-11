@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import DayList from "components/DayList";
 import "components/Application.scss";
 import Appointment from "components/Appointments";
-import { getAppointmentsForDay, getInterview } from "../helpers/selectors";
+import { getAppointmentsForDay, getInterview, getInterviewersForDay } from "../helpers/selectors";
 
 
 
@@ -44,10 +44,24 @@ export default function Application(props) {
 
   // const setDays = days => setState(prev => ({ ...prev, days}));
 
-
   
+  // Appointment component, lots of functions here
   // helpers/selectors.js
   const appointments = getAppointmentsForDay(state, state.day);
+
+  const interviewers = getInterviewersForDay(state, state.day);
+
+  function bookInterview(id, interview) {
+    console.log(id, interview);
+  }
+
+  function save(name, interviewer) {
+    const interview = {
+      student: name,
+      interviewer
+    };
+  }
+
   
   const schedule = appointments.map(appointment => {
 
@@ -59,8 +73,8 @@ export default function Application(props) {
       id={appointment.id}
       time={appointment.time}
       interview={interview}
-      // interviewers={state.interviewers}
-      interviewers={[]}
+      interviewers={interviewers}
+      bookInterview={bookInterview()}
       />
     )
   });

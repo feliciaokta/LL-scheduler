@@ -30,3 +30,20 @@ export const getInterview = (state, interview) => {
 
 
 
+export const getInterviewersForDay = (state, day) => {
+  // Find the current day -- elm is the object from the api
+  const currentDay = state.days.find(elm => day === elm.name)
+
+  // Get interviewers.id array from the day
+  const currentInterviewers = currentDay ? currentDay.interviewers : [];
+
+  // Create an empty array of interviewers
+  const parsedInterviewers = [];
+
+  // Push each appointment object
+  for (let id of currentInterviewers) {
+    parsedInterviewers.push(state.interviewers[id])
+  }
+
+  return parsedInterviewers;
+};
