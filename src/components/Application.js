@@ -42,8 +42,10 @@ export default function Application(props) {
 
   const setDay = day => setState(prev => ({ ...prev, day}));
 
-  const setDays = days => setState(prev => ({ ...prev, days}));
+  // const setDays = days => setState(prev => ({ ...prev, days}));
 
+
+  
   // helpers/selectors.js
   const appointments = getAppointmentsForDay(state, state.day);
   
