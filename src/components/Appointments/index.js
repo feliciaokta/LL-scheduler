@@ -21,8 +21,8 @@ export default function Appointment(props) {
   const EMPTY = "EMPTY";
   const SHOW = "SHOW";
   const CREATE = "CREATE";
-  const SAVE = "SAVE";
-  const DELETE = "DELETE";
+  const SAVING = "SAVING";
+  const DELETING = "DELETING";
   const CONFIRM = "CONFIRM";
   const EDIT = "EDIT";
 
@@ -34,7 +34,7 @@ export default function Appointment(props) {
   );
 
   function save(name, interviewer) {
-    transition(SAVE);
+    transition(SAVING, true);
 
     const interview = {
       student: name,
@@ -45,21 +45,21 @@ export default function Appointment(props) {
     .then(() => {
       transition(SHOW);
     })
-    .catch(() => {
-      transition(ERROR_SAVE);
+    .catch((error) => {
+      (transition(ERROR_SAVE, true));
     })
     
   };
 
   function deleteInterview() {
-    transition(DELETE);
+    transition(DELETING, true);
 
     props.cancelInterview(props.id)
     .then(() => {
       transition(EMPTY)
     })
-    .catch(() => {
-      transition(ERROR_DELETE);
+    .catch((error) => {
+      (transition(ERROR_DELETE, true));
     })
 
   };
@@ -88,11 +88,11 @@ export default function Appointment(props) {
           />)
         }
         
-        {mode === SAVE && 
+        {mode === SAVING && 
           (<Status message="Saving" />)
         }
         
-        {mode === DELETE &&
+        {mode === DELETING &&
           (<Status message="Deleting" />)
         }
 
