@@ -44,15 +44,10 @@ export default function Application(props) {
 
   // const setDays = days => setState(prev => ({ ...prev, days}));
 
-  
-  // Appointment component, bound into {schedule}, lots of functions here
   // helpers/selectors.js
   const appointments = getAppointmentsForDay(state, state.day);
 
-  const interviewers = getInterviewersForDay(state, state.day);
-
   function bookInterview(id, interview) {
-    console.log(id, interview);
 
     const appointment = {
       ...state.appointments[id],
@@ -64,7 +59,7 @@ export default function Application(props) {
       [id]: appointment
     };
 
-    const promiseApptID = `/api/appointments/${id}`;
+    let promiseApptID = `/api/appointments/${id}`;
     return axios.put(promiseApptID, {interview})
       .then(() => {
         setState({
@@ -75,9 +70,34 @@ export default function Application(props) {
 
   }
 
-  
-  const schedule = appointments.map(appointment => {
 
+  function cancelInterview(id) {
+    const appointment = {
+      ...state.appointments[id],
+      interview: null
+    };
+
+    const appointments = {
+      ...state.appointments,
+      [id]: appointment
+    };
+    
+    let promiseApptID = `/api/appointments/${id}`;
+    return axios.delete(promiseApptID, {interview: null})
+      .then(() => {
+        setState({
+          ...state,
+          appointments
+        })
+      })
+
+  }
+
+  
+
+  const schedule = appointments.map(appointment => {
+    // helpers/selectors.js
+    const interviewers = getInterviewersForDay(state, state.day);
     const interview = getInterview(state, appointment.interview);
 
     return (
@@ -88,6 +108,7 @@ export default function Application(props) {
       interview={interview}
       interviewers={interviewers}
       bookInterview={bookInterview}
+      cancelInterview={cancelInterview}
       />
     )
   });
