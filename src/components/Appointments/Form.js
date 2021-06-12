@@ -6,8 +6,6 @@ import "components/InterviewerList.scss";
 
 export default function Form(props) {
 
-  console.log("props from Form.js : ");
-
   const [name, setName] = useState(props.name || "");
   const [interviewer, setInterviewer] = useState(props.interviewer || null);
 
@@ -31,6 +29,7 @@ export default function Form(props) {
       <form autoComplete="off" onSubmit={event => event.preventDefault()}>
         <input
           className="appointment__create-input text--semi-bold"
+          name={props.name}
           value={name}
           type="text"
           placeholder="Enter Student Name"

@@ -52,6 +52,17 @@ export default function Application(props) {
   // booking an interview
   function bookInterview(id, interview) {
 
+    // the interview parameter is this object from the save fx in index.js
+    // const interview = {
+    //   student: name,
+    //   interviewer      -- this is the interviewer id
+    // };
+    
+    // this object
+    // "2":{"id":2,"time":"1pm","interview":{"student":"Archie Cohen","interviewer":6}}
+
+
+
     const appointment = {
       ...state.appointments[id],
       interview: { ...interview }
@@ -59,7 +70,7 @@ export default function Application(props) {
 
     const appointments = {
       ...state.appointments,
-      [id]: appointment
+      [id]: appointment // reassigning appointment on 65
     };
 
     let promiseApptID = `/api/appointments/${id}`;
@@ -67,7 +78,7 @@ export default function Application(props) {
       .then(() => {
         setState({
           ...state,
-          appointments
+          appointments // reassigning const appointments on line 70
         })
       })
 
@@ -102,8 +113,8 @@ export default function Application(props) {
 
   const schedule = appointments.map(appointment => {
     // helpers/selectors.js
-    const interviewers = getInterviewersForDay(state, state.day);
     const interview = getInterview(state, appointment.interview);
+    const interviewers = getInterviewersForDay(state, state.day);
 
     return (
       <Appointment
