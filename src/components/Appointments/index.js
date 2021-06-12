@@ -8,6 +8,7 @@ import Empty from "components/Appointments/Empty";
 import Status from "components/Appointments/Status";
 import Confirm from "components/Appointments/Confirm";
 import useVisualMode from "../../hooks/useVisualMode.js";
+import Error from "components/Appointments/Error";
 
 // :last-of-type CSS selector in the last appointment
 
@@ -15,22 +16,25 @@ import useVisualMode from "../../hooks/useVisualMode.js";
 
 export default function Appointment(props) {
 
-  console.log("props from index.js: ", props);
+  // console.log("props from index.js: ", props);
 
   const EMPTY = "EMPTY";
   const SHOW = "SHOW";
   const CREATE = "CREATE";
-  const SAVING = "SAVING";
+  const SAVE = "SAVE";
   const DELETE = "DELETE";
   const CONFIRM = "CONFIRM";
   const EDIT = "EDIT";
+
+  const ERROR_SAVE = "ERROR_SAVE";
+  const ERROR_DELETE = "ERROR_DELETE";
 
   const { mode, transition, back } = useVisualMode(
     props.interview ? SHOW : EMPTY
   );
 
   function save(name, interviewer) {
-    transition(SAVING);
+    transition(SAVE);
 
     const interview = {
       student: name,
@@ -41,6 +45,9 @@ export default function Appointment(props) {
     .then(() => {
       transition(SHOW);
     })
+    .catch(() => {
+      transition(ERROR_SAVE);
+    })
     
   };
 
@@ -50,6 +57,9 @@ export default function Appointment(props) {
     props.cancelInterview(props.id)
     .then(() => {
       transition(EMPTY)
+    })
+    .catch(() => {
+      transition(ERROR_DELETE);
     })
 
   };
@@ -78,7 +88,7 @@ export default function Appointment(props) {
           />)
         }
         
-        {mode === SAVING && 
+        {mode === SAVE && 
           (<Status message="Saving" />)
         }
         
@@ -103,6 +113,21 @@ export default function Appointment(props) {
             onSave={save}
           />)
         }
+        {mode === ERROR_SAVE && (
+          <Error
+            message="Could not save appointment"
+            onClose={() => transition(EMPTY)}
+          />
+          )
+        }
+        {mode === ERROR_DELETE && (
+          <Error
+            message="Could not delete appointment"
+            onClose={() => transition(SHOW)}
+          />
+          )
+        }
+        
     </article>
   )
 

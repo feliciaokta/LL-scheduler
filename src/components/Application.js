@@ -58,10 +58,8 @@ export default function Application(props) {
     //   interviewer      -- this is the interviewer id
     // };
     
-    // this object
+    // const appointment is this object
     // "2":{"id":2,"time":"1pm","interview":{"student":"Archie Cohen","interviewer":6}}
-
-
 
     const appointment = {
       ...state.appointments[id],
