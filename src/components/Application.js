@@ -47,6 +47,9 @@ export default function Application(props) {
   // helpers/selectors.js
   const appointments = getAppointmentsForDay(state, state.day);
 
+
+
+  // booking an interview
   function bookInterview(id, interview) {
 
     const appointment = {
@@ -71,6 +74,8 @@ export default function Application(props) {
   }
 
 
+
+  // deleting an interview
   function cancelInterview(id) {
     const appointment = {
       ...state.appointments[id],
