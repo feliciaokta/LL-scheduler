@@ -65,20 +65,29 @@ export default function useApplicationData() {
       };
   
       let promiseApptID = `/api/appointments/${id}`;
+
       return axios.put(promiseApptID, {interview})
         .then(() => {
-          setState({
-            ...state,
-            appointments // reassigning const appointments on line 70
-          })
+        setState((state) => {
+          const days = state.days.map((day) => {
+
+            if (state.day === day.name) {
+              day.spots = day.spots - 1;
+            }
+            return day;
+          });
+
+          return { ...state, appointments, days: days}
         })
+      })
   
     }
+
   
   
   
     // deleting an interview
-    function cancelInterview(id) {
+    function cancelInterview(id, interview) {
       const appointment = {
         ...state.appointments[id],
         interview: null
@@ -90,13 +99,21 @@ export default function useApplicationData() {
       };
       
       let promiseApptID = `/api/appointments/${id}`;
-      return axios.delete(promiseApptID, {interview: null})
+
+      return axios.delete(promiseApptID, {interview})
         .then(() => {
-          setState({
-            ...state,
-            appointments
-          })
+        setState((state) => {
+          const days = state.days.map((day) => {
+
+            if (state.day === day.name) {
+              day.spots = day.spots + 1;
+            }
+            return day;
+          });
+
+          return { ...state, appointments, days: days}
         })
+      })
     }
 
     return { state, setDay, bookInterview, cancelInterview };
