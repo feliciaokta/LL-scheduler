@@ -7,7 +7,7 @@ import Show from "components/Appointments/Show";
 import Empty from "components/Appointments/Empty";
 import Status from "components/Appointments/Status";
 import Confirm from "components/Appointments/Confirm";
-import useVisualMode from "../../hooks/useVisualMode.js";
+import useVisualMode from "../../hooks/useVisualMode";
 import Error from "components/Appointments/Error";
 
 // :last-of-type CSS selector in the last appointment
@@ -15,8 +15,6 @@ import Error from "components/Appointments/Error";
 
 
 export default function Appointment(props) {
-
-  // console.log("props from index.js: ", props);
 
   const EMPTY = "EMPTY";
   const SHOW = "SHOW";
