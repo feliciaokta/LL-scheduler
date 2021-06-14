@@ -16,6 +16,7 @@ export default function Application(props) {
     bookInterview,
     cancelInterview
   } = useApplicationData();
+  // this is a custom hook in hooks folder
 
 
   // getAppointmentsForDay in helpers/selectors.js

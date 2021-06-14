@@ -1,11 +1,12 @@
 import React from "react";
-import classNames from 'classnames';
 import InterviewerListItem from "components/InterviewerListItem";
 import "components/InterviewerList.scss";
+import PropTypes from 'prop-types';
 
-export default function InterviewerList(props) {
+function InterviewerList(props) {
 
   // console.log("props from InterviewerList.js : ", props);
+  // props = all the interviewers available for the day to select from when making a new appointment. 5 interviewers per day
 
   const data = props.interviewers.map((interviewer) => {
     return (<InterviewerListItem
@@ -25,3 +26,9 @@ export default function InterviewerList(props) {
   )
 
 };
+
+InterviewerList.propTypes = {
+  interviewers: PropTypes.array.isRequired
+};
+
+export default InterviewerList;
