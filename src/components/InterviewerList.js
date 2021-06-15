@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 
 function InterviewerList(props) {
 
-  console.log("props from InterviewerList.js : ", props);
+  // console.log("props from InterviewerList.js : ", props);
   // props = all the interviewers available for the day to select from when making a new appointment (after you click the plus button). 5 interviewers per day and their avatars in one array.
 
   const data = props.interviewers.map((interviewer) => {

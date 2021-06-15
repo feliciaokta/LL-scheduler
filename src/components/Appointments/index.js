@@ -16,6 +16,8 @@ import Error from "components/Appointments/Error";
 
 export default function Appointment(props) {
 
+  console.log("props from index.js: ", props);
+
   const EMPTY = "EMPTY";
   const SHOW = "SHOW";
   const CREATE = "CREATE";
