@@ -157,18 +157,65 @@ it("loads data, edits an interview and keeps the spots remaining for Monday the 
 
 
 
-it("shows the save error when failing to save an appointment", () => {
+it("shows the save error when failing to save an appointment", async () => {
+  // error message: name cannot be blank
   axios.put.mockRejectedValueOnce();
+
+  const { container, debug } = render(<Application />);
+
+  await waitForElement(() => getByText(container, "Archie Cohen"));
+  
+  const appointments = getAllByTestId(container, "appointment");
+  
+  const appointment = appointments[0];
+  
+  // console.log("1. ", prettyDOM(container));
+  // console.log("2. appts", prettyDOM(appointments));
+  // console.log("3. appt", prettyDOM(appointment));
+  
+  fireEvent.click(getByAltText(appointment, "Add"));
+  
+  fireEvent.change(getByPlaceholderText(appointment, /enter student name/i), {
+    target: { value: "" }
+  });
+
+  fireEvent.click(getByText(appointment, "Save"));
+
+  expect(getByText(appointment, "Student name cannot be blank")).toBeInTheDocument();
+
 });
 
 
 
-// it("shows the save error when failing to save an appointment", () => {
+it("shows the delete error when failing to delete an existing appointment", async () => {
+  axios.delete.mockRejectedValueOnce();
 
-// })
+  // 1. render app
+  const { container, debug } = render(<Application />);
 
+  // 2. wait for Archie to appear
+  await waitForElement(() => getByText(container, "Archie Cohen"));
 
+  // 3. find Archie & delete his appt
+  const appointment = getAllByTestId(container, "appointment").find(
+    appointment => queryByText(appointment, "Archie Cohen")
+  );
+  fireEvent.click(queryByAltText(appointment, "Delete"));
 
+  // 4. show confirmation toggle
+  expect(getByText(appointment, "Are you sure you would like to delete?")).toBeInTheDocument();
+
+  // 5. press confirm
+  fireEvent.click(getByText(appointment, "Confirm"));
+
+  // 6. "deleting" circle loading going around
+  await waitForElement(() => getByText(appointment, "Deleting"));
+  
+  // 7. pop up "could not delete appt"
+
+  expect(getByText(appointment, "Could not delete appointment")).toBeInTheDocument();
+
+});
 
 
 
