@@ -40,7 +40,7 @@ export default function Form(props) {
 
 
   return(
-  <main className="appointment__card appointment__card--create">
+  <main className="appointment__card appointment__card--create" data-testid="form">
     <section className="appointment__card-left">
       <form autoComplete="off" onSubmit={event => event.preventDefault()}>
         <input
