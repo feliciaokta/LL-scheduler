@@ -16,7 +16,7 @@ import Error from "components/Appointments/Error";
 
 export default function Appointment(props) {
 
-  console.log("props from index.js: ", props);
+  // console.log("props from index.js: ", props);
 
   const EMPTY = "EMPTY";
   const SHOW = "SHOW";
@@ -66,7 +66,7 @@ export default function Appointment(props) {
 
 
   return (
-    <article className="appointment">
+    <article className="appointment" data-testid="appointment">
 
       <Header time={props.time} />
         {mode === EMPTY && <Empty onAdd={() => transition(CREATE)} />}
