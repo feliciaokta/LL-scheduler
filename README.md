@@ -14,6 +14,17 @@ Components built separately using Storybook.
 App built using React.
 Tested using Jest and Cypress.
 
+## Screenshots
+
+Index Page
+https://github.com/feliciaokta/LL-scheduler/blob/master/Screenshots/FrontPage.png?raw=true
+
+Add An Interview
+https://github.com/feliciaokta/LL-scheduler/blob/master/Screenshots/AddInterview.png?raw=true
+
+Delete Interview Confirmation
+https://github.com/feliciaokta/LL-scheduler/blob/master/Screenshots/DeleteConfirm.png?raw=true
+
 ## Setup
 
 Install dependencies with `npm install`.
