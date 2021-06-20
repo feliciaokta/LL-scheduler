@@ -38,7 +38,9 @@ npm start
 npm start
 ```
 
-3. To reset the database after some tests, run `localhost:8001/api/debug/reset`
+3. To open the app on your browser, go to `localhost:8000`
+
+3. To reset the database after some tests, go to `localhost:8001/api/debug/reset` and then back to `localhost:8000`
 
 ## Running Jest Test Framework
 
