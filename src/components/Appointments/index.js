@@ -16,8 +16,6 @@ import Error from "components/Appointments/Error";
 
 export default function Appointment(props) {
 
-  // console.log("props from index.js: ", props);
-
   const EMPTY = "EMPTY";
   const SHOW = "SHOW";
   const CREATE = "CREATE";
@@ -116,7 +114,7 @@ export default function Appointment(props) {
         {mode === ERROR_SAVE && (
           <Error
             message="Could not save appointment"
-            onClose={() => transition(EMPTY)}
+            onClose={() => transition(SHOW)}
           />
           )
         }

@@ -28,9 +28,17 @@ Install dependencies with `npm install`.
 
 ## Running Webpack Development Server
 
+1. Go to your terminal, cd to the `scheduler-api` directory, then run:
 ```sh
 npm start
 ```
+
+2. Make a new tab in your terminal, cd to the root directory of the project (mine is named `scheduler`), then run:
+```sh
+npm start
+```
+
+3. To reset the database after some tests, run `localhost:8001/api/debug/reset`
 
 ## Running Jest Test Framework
 

@@ -2,7 +2,6 @@ import React from "react";
 
 export default function Show(props) {
 
-  // console.log("props from Show.js: ", props);
   // props here is an object of all the appointments booked containing the student name and the interviewer object
 
   return (

@@ -38,10 +38,6 @@ it("loads data, books an interview and reduces the spots remaining for the first
   
   const appointment = appointments[0];
   
-  // console.log("1. ", prettyDOM(container));
-  // console.log("2. appts", prettyDOM(appointments));
-  // console.log("3. appt", prettyDOM(appointment));
-  
   fireEvent.click(getByAltText(appointment, "Add"));
   
   fireEvent.change(getByPlaceholderText(appointment, /enter student name/i), {
@@ -60,8 +56,6 @@ it("loads data, books an interview and reduces the spots remaining for the first
   const day = getAllByTestId(container, "day").find(day =>
     queryByText(day, "Monday")
   ); 
-
-  // console.log("4. day", prettyDOM(day));
 
   expect(getByText(day, "no spots remaining")).toBeInTheDocument();
 
@@ -168,10 +162,6 @@ it("shows the save error when failing to save an appointment", async () => {
   const appointments = getAllByTestId(container, "appointment");
   
   const appointment = appointments[0];
-  
-  // console.log("1. ", prettyDOM(container));
-  // console.log("2. appts", prettyDOM(appointments));
-  // console.log("3. appt", prettyDOM(appointment));
   
   fireEvent.click(getByAltText(appointment, "Add"));
   
