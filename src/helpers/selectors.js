@@ -1,7 +1,7 @@
 
 export const getAppointmentsForDay = (state, day) => {
   // Find the current day -- elm is the object from the api
-  const currentDay = state.days.find(elm => day === elm.name)
+  const currentDay = state.days.find(dayObj => day === dayObj.name)
 
   // Get appointments.id array from the day
   const currentAppointments = currentDay ? currentDay.appointments : [];
@@ -10,9 +10,9 @@ export const getAppointmentsForDay = (state, day) => {
   const parsedAppointments = [];
 
   // Push each appointment object
-  for (let id of currentAppointments) {
+  currentAppointments.map(id =>
     parsedAppointments.push(state.appointments[id])
-  }
+  )
 
   return parsedAppointments;
 };
@@ -32,7 +32,7 @@ export const getInterview = (state, interview) => {
 
 export const getInterviewersForDay = (state, day) => {
   // Find the current day -- elm is the object from the api
-  const currentDay = state.days.find(elm => day === elm.name)
+  const currentDay = state.days.find(dayObj => day === dayObj.name)
 
   // Get interviewers.id array from the day
   const currentInterviewers = currentDay ? currentDay.interviewers : [];
@@ -41,9 +41,9 @@ export const getInterviewersForDay = (state, day) => {
   const parsedInterviewers = [];
 
   // Push each appointment object
-  for (let id of currentInterviewers) {
+  currentInterviewers.map(id =>
     parsedInterviewers.push(state.interviewers[id])
-  }
+  )
 
   return parsedInterviewers;
 };

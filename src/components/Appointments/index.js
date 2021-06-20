@@ -120,7 +120,6 @@ export default function Appointment(props) {
         }
         {mode === ERROR_DELETE && (
           <Error
-            // data-testid="deleteError"
             message="Could not delete appointment"
             onClose={() => transition(SHOW)}
           />
