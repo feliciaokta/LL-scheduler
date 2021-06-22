@@ -53,7 +53,7 @@ export default function useApplicationData() {
       return newDays;
     }
   
-    // booking function
+
     const bookInterview = (id, interview) => { // id and newInterview obj
   
       const appointment = {
@@ -76,7 +76,7 @@ export default function useApplicationData() {
     
     }
   
-    // canceling function
+
     const cancelInterview = (id) => {
       const appointment = {
         ...state.appointments[id],
